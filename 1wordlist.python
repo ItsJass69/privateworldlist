@@ -1,0 +1,30 @@
+import itertools
+import string
+
+def generate_variations(word, max_length):
+    character_sets = [
+        string.ascii_lowercase,
+        string.ascii_uppercase,
+        string.digits,
+        string.punctuation
+    ]
+
+    all_variations = []
+    for length in range(1, max_length + 1):
+        for combination in itertools.product(*character_sets, repeat=length):
+            variation = ''.join(combination)
+            all_variations.append(variation)
+
+    return all_variations
+
+words = ["maor", "chuna"]
+max_length = 100
+all_word_variations = []
+
+for word in words:
+    word_variations = generate_variations(word, max_length)
+    all_word_variations.extend(word_variations)
+
+# Print or save the variations
+for variation in all_word_variations:
+    print(variation)
